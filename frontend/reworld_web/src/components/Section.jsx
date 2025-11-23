@@ -10,8 +10,7 @@ export default function Section({ direction = "right", image, title, text, gradi
         document.body.appendChild(temp);
         const computed = getComputedStyle(temp).color;
         document.body.removeChild(temp);
-        const m = computed.match(/\d+,\s*\d+,\s*\d+/);
-        return m
+        return computed.match(/\d+,\s*\d+,\s*\d+/);
     }
 
     return (

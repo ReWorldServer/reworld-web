@@ -25,17 +25,17 @@
 
 .banner__button {
     background-color: var(--border-color);
-    color: var(--bg-color);
     font-size: 20px;
     padding: 14px 32px;
     border-radius: 10px;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: bold;
     transition: all 0.25s ease;
     width: 20vw;
     box-shadow: 0 4px 10px var(--shadow-color);
     border: 4px solid #edcd27;
     text-transform: uppercase;
+    color: #574c0f;
 }
 
 .banner__button:hover {

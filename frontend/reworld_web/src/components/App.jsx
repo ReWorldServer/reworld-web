@@ -1,40 +1,20 @@
 import '../styles/App.css'
-import Header from "./Header.jsx";
-import Banner from "./Banner.jsx";
-import Section from "./Section.jsx";
-import Footer from "./Footer.jsx";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "../pages/Home.jsx";
+import Blog from "../pages/Blog.jsx";
+import Shop from "../pages/Shop.jsx";
+import BlogEntry from "./BlogEntry.jsx";
 
 function App() {
   return (
-    <>
-        <Header />
-        <Banner />
-        <Section
-            direction={"right"}
-            image={"https://cdn.hytale.com/5e7ba29d50cbcd001176c69b_84___ocean_3.jpg"}
-            gradientColor={"#003049"}
-            title={"Una nueva aventura te espera"}
-            text={"Explora un mundo enorme con misiones, gremios, personajes carismáticos, paisajes épicos y una gran personalización. Cada aventura es única, tú decides cómo vivirla."} />
-        <Section
-            direction={"left"}
-            image={"https://cdn.hytale.com/5e7ba2b850cbcd001176c6a9_85___dungeon_portal.jpg"}
-            gradientColor={"#283618"}
-            title={"Eventos en vivo"}
-            text={"El mundo de ReWorld está en constante cambio. Por ello, cada cierto tiempo ocurren eventos increíbles que cambiarán la forma de jugar: todo ello desentrañando los misterios de este mundo."} />
-        <Section
-            direction={"right"}
-            image={"https://cdn.hytale.com/5e7ba5083c9a2a00106793e4_134___roddan_castle.jpg"}
-            gradientColor={"#210f04"}
-            title={"Lánzate a la batalla"}
-            text={"¡Lucha junto a una facción por el control del mundo en el modo Guerra de Facciones! Expande tu terreno junto a tus aliados, forma estrategias y participa en batallones entre jugadores."} />
-        <Section
-            direction={"left"}
-            image={"https://cdn.hytale.com/5e7ba4773c9a2a00106793a0_112___hypixel_lobby_2.jpg"}
-            gradientColor={"#240046"}
-            title={"Comunidad activa"}
-            text={"¡La comunidad de ReWorld es muy amigable! Allí podrás conocer gente para vivir tus aventuras, ofrecer sugerencias y estar atento a novedades y adelantos. ¿Te lo vas a perder?"} />
-        <Footer />
-    </>
+    <Router>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<Blog />}/>
+            <Route path="/blog/bienvenidos-a-reworld" component={<BlogEntry id="bienvenidos-a-reworld" />} />
+            <Route path="/shop" element={<Shop />}/>
+        </Routes>
+    </Router>
   )
 }
 
