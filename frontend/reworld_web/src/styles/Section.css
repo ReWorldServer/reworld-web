@@ -1,0 +1,116 @@
+:root{
+    --gradient-color-rgb: rgb(0, 0, 0);
+}
+
+.section {
+    display: flex;
+    width: 100%;
+    min-height: 500px;
+    position: relative;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 3px 8px var(--shadow-color);
+}
+
+.section__content {
+    width: 40%;
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--text-color);
+    padding: 30px;
+    z-index: 2;
+}
+
+.section__content hr {
+    color: var(--border-color);
+    box-shadow: 0 3px 8px var(--shadow-color);
+    min-width: 100px;
+    width: 40%;
+}
+
+.section--right .section__content {
+    margin-left: auto;
+    text-align: center;
+}
+
+.section--left .section__content {
+    margin-right: auto;
+    text-align: center;
+}
+
+.section__content h2,
+.section__content p {
+    text-shadow: 1px 1px 4px var(--shadow-color);
+}
+
+.section__content h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.section__content p {
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 0 10%;
+}
+
+.section--right::before,
+.section--left::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.section--right::before {
+    background: linear-gradient(
+            265deg,
+            rgba(var(--gradient-color-rgb), 0.9) 0%,
+            rgba(var(--gradient-color-rgb), 0.9) 40%,
+            rgba(var(--gradient-color-rgb), 0) 60%,
+            rgba(var(--gradient-color-rgb), 0) 95%,
+            rgba(var(--gradient-color-rgb), 0.9) 100%
+    );
+}
+
+.section--left::before {
+    background: linear-gradient(
+            95deg,
+            rgba(var(--gradient-color-rgb), 0.9) 0%,
+            rgba(var(--gradient-color-rgb), 0.9) 40%,
+            rgba(var(--gradient-color-rgb), 0) 60%,
+            rgba(var(--gradient-color-rgb), 0) 95%,
+            rgba(var(--gradient-color-rgb), 0.9) 100%
+    );
+}
+
+.section--left {
+    flex-direction: row-reverse;
+}
+
+.section--right {
+    flex-direction: row;
+}
+
+@media (max-width: 768px) {
+    .section {
+        flex-direction: column;
+    }
+
+    .section__content {
+        width: 100%;
+        padding: 40px 20px;
+        margin: 0 !important;
+    }
+}
