@@ -7,7 +7,7 @@ export default function Home(){
     return (
         <>
             <Header />
-            <main>
+            <main style={{margin: 0}}>
                 <Banner />
                 <Section
                     direction={"right"}

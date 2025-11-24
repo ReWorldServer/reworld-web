@@ -28,12 +28,14 @@
     --border-color: #d1ac16;
     --shadow-color: rgba(0, 0, 0, 0.5);
     --text-color: #e3e3e3;
+    --p-color: #b0b0b0;
 }
 
 h1,h2,h3,h4,h5,h6 {
     font-family: "Amiri", sans-serif;
     text-transform: uppercase;
-    font-weight: bolder;
+    font-weight: normal;
+    text-shadow: 1px 1px 4px var(--shadow-color);
 }
 
 a {
@@ -45,8 +47,18 @@ a:hover {
   color: #535bf2;
 }
 
+p {
+    color: var(--p-color) !important;
+}
+
 main {
     min-height: 100vh;
+    margin-top: 70px;
+    padding-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 body {
@@ -62,8 +74,17 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 3.7em;
   line-height: 1.1;
+}
+
+h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 24px;
 }
 
 button {
@@ -97,7 +118,8 @@ button:focus-visible {
 }
 
 .title__container {
-    margin-top: 15vh;
+    z-index: 11;
+    position: relative;
 }
 
 .blog__container {
@@ -106,4 +128,46 @@ button:focus-visible {
     flex-wrap: wrap;
     margin: 10vh 16%;
     justify-content: left;
+}
+
+.blog__main {
+    background-image: url("https://cdn.hytale.com/5e7b9f8a50cbcd001176c5d7_16___library_at_dusk.jpg");
+    min-height: 100vh;
+    height: max-content;
+    background-size: cover;
+    position: relative;
+}
+
+.blog__main::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #050505;
+    opacity: 0.8;
+    z-index: 1;
+}
+
+.entry__main {
+    padding: 70px 20vw;
+}
+
+.entry__main * {
+    width: 40vw;
+    z-index: 10;
+}
+
+.entry__banner {
+    aspect-ratio: 16/9;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    width: 70%;
+    margin-top: 70px;
+    max-width: 60vw;
+}
+
+.entry__main h3, .entry__main p {
+    text-align: left;
 }

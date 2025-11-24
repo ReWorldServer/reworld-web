@@ -8,8 +8,8 @@ export default function Shop(){
             <main>
                 <div className="title__container">
                     <h1>Tienda</h1>
-                    <p>...</p>
                 </div>
+                <hr />
             </main>
             <Footer />
         </>

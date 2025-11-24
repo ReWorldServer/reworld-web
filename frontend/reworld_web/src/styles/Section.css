@@ -29,11 +29,13 @@
     z-index: 2;
 }
 
-.section__content hr {
+hr {
     color: var(--border-color);
     box-shadow: 0 3px 8px var(--shadow-color);
     min-width: 100px;
     width: 40%;
+    position: relative;
+    z-index: 10;
 }
 
 .section--right .section__content {
@@ -46,20 +48,11 @@
     text-align: center;
 }
 
-.section__content h2,
-.section__content p {
-    text-shadow: 1px 1px 4px var(--shadow-color);
-}
-
-.section__content h2 {
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
 .section__content p {
     font-size: 18px;
     line-height: 1.6;
     padding: 0 10%;
+    text-shadow: 1px 1px 4px var(--shadow-color);
 }
 
 .section--right::before,
