@@ -1,6 +1,7 @@
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import {useState, useEffect} from "react";
+import "../styles/BlogEntry.css"
 
 function parseComponent(component) {
     switch (component.type) {
