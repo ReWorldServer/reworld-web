@@ -19,7 +19,7 @@ export default function Banner() {
                                     document.getElementsByClassName("banner__alert")[0].className += " banner__alert--enabled";
                                     setTimeout(() => {
                                         document.getElementsByClassName("banner__alert")[0].className = " banner__alert";
-                                    }, 1000)
+                                    }, 2000)
                                 })
                                 .catch((err) => {
                                     console.error("Error al copiar al portapapeles: ", err);

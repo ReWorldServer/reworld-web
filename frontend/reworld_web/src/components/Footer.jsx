@@ -4,7 +4,7 @@ import "../styles/Footer.css";
 export default function Footer() {
     return (
         <footer className="footer">
-            <p>© ReWorld 2025<br />Todos los derechos reservados</p>
+            <p>© Umbral Labs 2025<br />Todos los derechos reservados</p>
         </footer>
     );
 }
