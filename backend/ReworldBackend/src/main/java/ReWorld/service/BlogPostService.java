@@ -31,7 +31,7 @@ public class BlogPostService {
     public List<BlogPostDTO> getAllBlogPosts() {
         List<BlogPost> posts = blogPostRepo.findAll();
         if (posts.isEmpty()) {
-            throw new NoBlogPostsFoundException("No hay entradas de blog");
+            return null;
         }
         return posts.stream().map(mapper::toDTO).collect(Collectors.toList());
     }
