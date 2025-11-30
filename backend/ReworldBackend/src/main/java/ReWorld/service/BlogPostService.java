@@ -31,7 +31,7 @@ public class BlogPostService {
     public List<BlogPostDTO> getAllBlogPosts() {
         List<BlogPost> posts = blogPostRepo.findAll();
         if (posts.isEmpty()) {
-            return null;
+            return List.of();
         }
         return posts.stream().map(mapper::toDTO).collect(Collectors.toList());
     }
