@@ -2,6 +2,8 @@ package ReWorld.service;
 
 import ReWorld.dto.ProductDTO;
 import ReWorld.entity.Product;
+import ReWorld.exception.NoProductsFoundException;
+import ReWorld.exception.ProductNotFoundException;
 import ReWorld.mapper.ProductMapper;
 import ReWorld.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,56 +16,57 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private final ProductRepository productRepo;
+    private final ProductMapper mapper;
 
     @Autowired
-    public ProductService(ProductRepository productRepo) {
+    public ProductService(ProductRepository productRepo, ProductMapper mapper) {
         this.productRepo = productRepo;
+        this.mapper = mapper;
     }
 
-    // --- READ ALL ---
+    // getall
     public List<ProductDTO> getAllProducts() {
-        return productRepo.findAll()
-                .stream()
-                .map(ProductMapper.INSTANCE::toDTO)
-                .collect(Collectors.toList());
+        List <Product> products = productRepo.findAll();
+        if (products.isEmpty()) {
+            throw new NoProductsFoundException("No hay productos");
+        }
+        return products.stream().map(mapper::toDTO).collect(Collectors.toList());
     }
 
-    // --- READ BY ID ---
+    // getbyid
     public ProductDTO getProductById(Long id) {
         Product product = productRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-        return ProductMapper.INSTANCE.toDTO(product);
+                .orElseThrow(()-> new ProductNotFoundException("Producto no enonctrado con ese id " + id ));
+        return mapper.toDTO(product);
     }
 
-    // --- CREATE ---
+    // create
     public ProductDTO createProduct(ProductDTO dto) {
-        if (dto.getName() == null || dto.getName().isBlank()) { // <-- corregido
+        if (dto.getName() == null || dto.getName().isBlank()) {
             throw new IllegalArgumentException("Nombre del producto es requerido");
         }
-        Product product = ProductMapper.INSTANCE.toEntity(dto);
+        Product product = mapper.toEntity(dto);
         Product saved = productRepo.save(product);
-        return ProductMapper.INSTANCE.toDTO(saved);
+        return mapper.toDTO(saved);
     }
 
-    // --- UPDATE ---
+    // update
     public ProductDTO updateProduct(Long id, ProductDTO dto) {
         Product existing = productRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+                .orElseThrow(() -> new ProductNotFoundException("Producto no encontrado con id " + id));
 
-        existing.setName(dto.getName()); // <-- corregido
+        existing.setName(dto.getName());
         existing.setPrice(dto.getPrice());
 
         Product updated = productRepo.save(existing);
-        return ProductMapper.INSTANCE.toDTO(updated);
+        return mapper.toDTO(updated);
     }
 
-
-
-    // --- DELETE ---
+    // delete
     public ProductDTO deleteProduct(Long id) {
         Product product = productRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-        productRepo.deleteById(id);
-        return ProductMapper.INSTANCE.toDTO(product);
+                .orElseThrow(() -> new ProductNotFoundException("Producto no encontrado con id " + id));
+        productRepo.delete(product);
+        return mapper.toDTO(product);
     }
 }
