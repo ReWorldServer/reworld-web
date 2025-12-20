@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend/ReworldBackend
+    ports:
+      - "10000:10000"
+    environment:
+      SPRING_APPLICATION_NAME: Reworld
+    restart: always
+
+  frontend:
+    build: ./frontend/reworld_web
+    ports:
+      - "10010:10010"
+    restart: always
