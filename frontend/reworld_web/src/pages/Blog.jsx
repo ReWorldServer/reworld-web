@@ -1,4 +1,3 @@
-// ...existing code...
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import { useState, useEffect } from "react";
@@ -10,7 +9,7 @@ export default function Blog() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const res = await fetch("http://localhost:8080/api/blogposts");
+        const res = await fetch("http://backend.reworldhytale.com:8080/api/blogposts");
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const posts = await res.json();
 
@@ -82,16 +81,6 @@ export default function Blog() {
           <h1>Blog</h1>
         </div>
         <hr />
-
-        {/* Depuración rápida: muestra número de entradas y lista de títulos */}
-        <div style={{ padding: 8, background: "#fff3", marginBottom: 12 }}>
-          <strong>Entries:</strong> {entries.length}
-          <ul style={{ margin: "6px 0 0 18px" }}>
-            {entries.map((e) => (
-              <li key={`debug-${e.id ?? e.target}`}>{e.title}</li>
-            ))}
-          </ul>
-        </div>
 
         <div className="blog__container">
           {entries.map((entry) => (

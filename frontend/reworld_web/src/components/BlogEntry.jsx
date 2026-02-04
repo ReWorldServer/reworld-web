@@ -20,8 +20,8 @@ export default function BlogEntry({ id: propId }) {
 
     const maybeNumber = parseInt(String(id).split("-")[0], 10);
     const fetchUrl = !isNaN(maybeNumber)
-      ? `http://localhost:8080/api/blogposts/${maybeNumber}`
-      : `http://localhost:8080/api/blogposts/${id}`;
+      ? `http://backend.reworldhytale.com:8080/api/blogposts/${maybeNumber}`
+      : `http://backend.reworldhytale.com:8080/api/blogposts/${id}`;
 
     fetch(fetchUrl)
       .then(async (res) => {

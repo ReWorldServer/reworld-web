@@ -4,17 +4,23 @@ import Home from "../pages/Home.jsx";
 import Blog from "../pages/Blog.jsx";
 import Shop from "../pages/Shop.jsx";
 import BlogEntry from "./BlogEntry.jsx";
+import WorkInProgress from "../pages/WorkInProgress.jsx";
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
+/* <Route path="/" element={<Home />} />}
         <Route path="/blog" element={<Blog />} />
 
         <Route path="/blog/:id" element={<BlogEntry />} />
 
         <Route path="/shop" element={<Shop />} />
+
+        */
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+
+          <Route path="/" element={<WorkInProgress />} />
       </Routes>
     </Router>
   );

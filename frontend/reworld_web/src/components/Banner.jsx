@@ -2,23 +2,20 @@ import React, { useState } from "react";
 import "../styles/Banner.css";
 
 export default function Banner() {
-    const [hover, setHover] = useState(false);
 
     return (
         <section className="banner">
             <div className="banner__content">
                 <img
-                    src="/logo_full.png"
+                    src="/logo_full.webp"
                     alt="Logo"
                     className="banner__logo"
                 />
 
                 <button
                     className="banner__button"
-                    onMouseEnter={() => setHover(true)}
-                    onMouseLeave={() => setHover(false)}
                     onClick={() => {
-                        navigator.clipboard.writeText("reworldhytale.com")
+                        navigator.clipboard.writeText("play.reworldhytale.com")
                             .then(() => {
                                 document.getElementsByClassName("banner__alert")[0].className += " banner__alert--enabled";
                                 setTimeout(() => {
@@ -30,7 +27,7 @@ export default function Banner() {
                             });
                     }}
                 >
-                    {hover ? "Jugar" : "reworldhytale.com"}
+                    play.reworldhytale.com
                 </button>
 
                 <p className="banner__alert">
