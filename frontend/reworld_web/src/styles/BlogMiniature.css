@@ -68,3 +68,41 @@
 .type__Evento {
     color: deepskyblue;
 }
+
+@media (max-width: 1020px) {
+    .blog-miniature {
+        max-width: 48%;
+    }
+    .blog-miniature__content h2 {
+        font-size: 1.25rem;
+    }
+    .blog-miniature__metadata, .blog-miniature__description  {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 720px) {
+    .blog-miniature {
+        max-width: 100%;
+    }
+    .blog-miniature__content h2 {
+        font-size: 1.5rem;
+    }
+    .blog-miniature__metadata, .blog-miniature__description  {
+        font-size: 0.9rem;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .blog-miniature__content h2 {
+        font-size: 1.25rem;
+    }
+
+
+    .blog-miniature__metadata, .blog-miniature__description  {
+        font-size: 0.8rem;
+    }
+
+}
