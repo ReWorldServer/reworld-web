@@ -11,19 +11,19 @@ export default function Home(){
                 <Banner />
                 <Section
                     direction={"right"}
-                    image={"https://cdn.hytale.com/5e7ba29d50cbcd001176c69b_84___ocean_3.jpg"}
+                    image={"/src/assets/1.png"}
                     gradientColor={"#003049"}
                     title={"Una nueva aventura te espera"}
                     text={"Explora un mundo enorme con misiones, gremios, personajes carismáticos, paisajes épicos y una gran personalización. Cada aventura es única, tú decides cómo vivirla."} />
                 <Section
                     direction={"left"}
-                    image={"https://cdn.hytale.com/5e7ba2b850cbcd001176c6a9_85___dungeon_portal.jpg"}
+                    image={"/src/assets/4.png"}
                     gradientColor={"#283618"}
                     title={"Eventos en vivo"}
                     text={"El mundo de ReWorld está en constante cambio. Por ello, cada cierto tiempo ocurren eventos increíbles que cambiarán la forma de jugar: todo ello desentrañando los misterios de este mundo."} />
                 <Section
                     direction={"right"}
-                    image={"https://cdn.hytale.com/5e7ba5083c9a2a00106793e4_134___roddan_castle.jpg"}
+                    image={"/src/assets/8.png"}
                     gradientColor={"#210f04"}
                     title={"Lánzate a la batalla"}
                     text={"¡Lucha junto a una facción por el control del mundo en el modo Guerra de Facciones! Expande tu terreno junto a tus aliados, forma estrategias y participa en batallones entre jugadores."} />

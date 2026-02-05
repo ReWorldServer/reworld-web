@@ -1,16 +1,12 @@
-FROM node:22-alpine
-
-WORKDIR /reworld_web
-
-# Copy package.json and install dependencies
+FROM node:24-alpine AS build
+WORKDIR /app
 COPY package*.json ./
 RUN npm install
-
-# Copy the rest of the source code
 COPY . .
+RUN npm run build
 
-# Expose the dev server port
-EXPOSE 10010
-
-# Start the dev server when the container runs
-CMD ["npm", "run", "dev"]
+# Etapa 2: servir con Nginx
+FROM nginx:stable-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,69 +1,57 @@
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
-import {useState, useEffect} from "react";
-import "../styles/BlogEntry.css"
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 function parseComponent(component) {
-    switch (component.type) {
-        case "heading":
-            return <><h3>{component.text}</h3><hr/></>
-        case "paragraph":
-            return <p>{component.text}</p>
-        case "image":
-            return <><img src={component.src} alt={component.alt} /><span>{component.text}</span></>
-        default:
-            console.error(`Unknown component '${component.type}'`);
-    }
+  if (!component || !component.type) return null;
+  // your parsing logic here
 }
 
-export default function BlogEntry({id}) {
-    const [data, setData] = useState({
-        title : "Bienvenidos a ReWorld",
-        description: "ReWorld es un servidor de Hytale que bla bla bla y aquí hay mucho mucho relleno, de un par de líneas para hacer una simulación de lo que debería ser un texto del blog.",
-        image: "https://cdn.hytale.com/5e7ba4723c9a2a001067939c_110___kweebec_leaf_ranger.jpg",
-        date: "23/11/2025",
-        type: "Release",
-        target: "/blog/bienvenidos-a-reworld",
-        content: [
-            {
-                type: "paragraph",
-                text: "Esta es la primera entrada de ejemplo del blog de ReWorld. El servidor tiene que estar listo dentro de unos días pues este fin de semana por fin van a anunciar la fecha de Hytale, y creo honestamente que será dentro de muy poco..."
-            },
-            {
-                type: "heading",
-                text: "Empieza una nueva aventura"
-            },
-            {
-                type: "paragraph",
-                text: "En este servidor van a pasar cositas"
-            }
-        ]
-    });
+export default function BlogEntry({ id: propId }) {
+  const params = useParams();
+  const routeId = params?.id;
+  const id = propId ?? routeId;
 
-    useEffect(() => {
-        fetch(`https://reworldhytale.com:3006/blog/${id}`)
-            .then(async (res) => setData(await res.json()))
-            .catch(err => console.log(err));
-    }, [])
+  const [data, setData] = useState(null);
 
-    return (
-        <>
-            <Header />
-            <main className={"entry__main blog__main"}>
-                <img src={data.image} alt="Banner" className={"entry__banner"}/>
-                <h2>{data.title}</h2>
-                <p className="blog-miniature__metadata">
-                    <span>{data.date} </span>
-                    -
-                    <span className={`type__${data.type}`}> {data.type}</span>
-                </p>
-                {
-                    data.content.map((item, i) => (
-                        parseComponent(item)
-                    ))
-                }
-            </main>
-            <Footer />
-        </>
-    )
+  useEffect(() => {
+    if (!id) return;
+
+    const maybeNumber = parseInt(String(id).split("-")[0], 10);
+    const fetchUrl = !isNaN(maybeNumber)
+      ? `http://backend.reworldhytale.com:8080/api/blogposts/${maybeNumber}`
+      : `http://backend.reworldhytale.com:8080/api/blogposts/${id}`;
+
+    fetch(fetchUrl)
+      .then(async (res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        console.log("BlogEntry JSON:", json); // <-- depuración
+        setData(json);
+      })
+      .catch((err) => {
+        console.log("Error fetching blog entry:", err);
+      });
+  }, [id]);
+
+  if (!data) return <p>Cargando...</p>;
+
+  return (
+    <>
+      <Header />
+      <main>
+        <h1>{data.title}</h1>
+        <p>{data.description}</p>
+        {data.image && <img src={data.image} alt={data.title} />}
+        <p>{data.datep && new Date(data.datep).toLocaleDateString("es-ES")}</p>
+        {/* Si tu backend realmente devuelve un array "content", lo recorres aquí */}
+        {Array.isArray(data.content) &&
+          data.content.map((item, i) => (
+            <span key={i}>{parseComponent(item)}</span>
+          ))}
+      </main>
+      <Footer />
+    </>
+  );
 }

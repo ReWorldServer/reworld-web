@@ -1,0 +1,110 @@
+.wip__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0 !important;
+}
+
+.wip__logo {
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    animation: float infinite 10s ease-in-out;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(10px);
+    }
+    75% {
+        transform: translateY(-10px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+#dialog_text {
+    font-size: 40px;
+    transition: all 0.5s ease-in-out;
+}
+
+.storm {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    background: linear-gradient(
+            to bottom,
+            #0b1320dd,
+            #2a2035aa,
+            #12021faa
+    );
+}
+
+.storm__clouds {
+    position: absolute;
+    inset: 0;
+    background:
+            radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), transparent 60%),
+            radial-gradient(circle at 70% 40%, rgba(255,255,255,0.04), transparent 65%),
+            radial-gradient(circle at 50% 70%, rgba(255,255,255,0.03), transparent 60%);
+    z-index: 1;
+}
+
+.storm::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.02), transparent 70%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+
+.storm__lightning {
+    position: absolute;
+    inset: 0;
+    background: white;
+    opacity: 0;
+    animation: lightning 12s infinite;
+    z-index: 2;
+    pointer-events: none;
+}
+
+@keyframes lightning {
+    0%, 92%, 100% { opacity: 0; }
+    93% { opacity: 0.6; }
+    94% { opacity: 0.1; }
+    95% { opacity: 0.8; }
+    96% { opacity: 0; }
+}
+
+.wip__logo,
+#dialog_text {
+    position: relative;
+    z-index: 10;
+    color: #e5e7eb;
+    text-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.storm__background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.55);
+}
+
+@media (max-width: 1000px) {
+    .wip__logo {
+        width: 95%;
+    }
+}

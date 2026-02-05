@@ -10,7 +10,7 @@ export default function Header() {
         <header className="header">
             <a href="https://www.reworldhytale.com" className="header__logo">
                 <img
-                    src="/logo.png"
+                    src="/logo.webp"
                     alt="Logo"
                 />
             </a>
