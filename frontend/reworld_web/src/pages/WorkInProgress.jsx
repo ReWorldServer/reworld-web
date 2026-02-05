@@ -11,7 +11,11 @@ export default function WorkInProgress() {
         "¡Aguanten, camaradas!",
         "¿¡Hacia dónde estamos yendo!?",
         "¡Preparen los cañones!",
-        "Las leyendas serán ciertas en aquel lugar..."
+        "Las leyendas serán ciertas en aquel lugar...",
+        "¿Seremos capaces de cruzar esta tormenta, capitán?",
+        "¡Todo a babor!",
+        "¡Las reliquias nos esperan, camaradas!",
+        "Ha llegado el día por fin."
     ];
     const [text, setText] = useState(TEXT_OPTIONS[0]);
     const [visible, setVisible] = useState(true);
@@ -29,17 +33,20 @@ export default function WorkInProgress() {
         };
         timeout = setTimeout(cycle, 5000);
         return () => clearTimeout(timeout);
-    }, []);
+    }, );
     return (
         <>
             <main className="wip__main storm">
-                <div className="storm__clouds" />
-                <div className="storm__rain" />
-                <div className="storm__lightning" />
-                <img src="/logo_full.webp" width={"60%"} className="wip__logo" />
-                <h1 id={"dialog_text"} style={{opacity: visible ? "1": "0"}}>{text}</h1>
+                <div className="storm__clouds"/>
+                <div className="storm__lightning"/>
+                <img src="/logo_full.webp" width={"60%"} className="wip__logo"/>
+                <h1 id={"dialog_text"} style={{opacity: visible ? "1" : "0"}}>{text}</h1>
+                <video autoPlay loop playsInline className={"storm__background"}>
+                    <source src="/background.webm" type="video/webm"/>
+                    <source src="/background.mp4" type="video/mp4"/>
+                </video>
             </main>
-            <Footer />
+            <Footer/>
         </>
     )
 }
